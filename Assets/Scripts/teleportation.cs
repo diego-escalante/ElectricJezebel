@@ -27,7 +27,7 @@ public class teleportation : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.Find("player");
-		margin = player.GetComponent<BoxCollider2D>().bounds.size.y/4;
+		if(player) margin = player.GetComponent<BoxCollider2D>().bounds.size.y/4;
 
 		box = GetComponent<BoxCollider2D> ();
 		boxSize = box.bounds.size;
@@ -74,12 +74,12 @@ public class teleportation : MonoBehaviour {
 
 		//Quit early if there are not exactly 2 teleporters available.
 		if(existingCount != 2) {
-			AudioSource.PlayClipAtPoint(nopeSound, transform.position);
+			GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(nopeSound);
 			return;
 		}
 
 		//Teleport the player.
-		AudioSource.PlayClipAtPoint (teleportSound, transform.position);
+		GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(teleportSound);
 		Instantiate(glare, player.transform.position, Quaternion.identity);
 		if (this.gameObject != existingTeleporters[0])
 			player.transform.position = existingTeleporters[0].transform.position;

@@ -13,8 +13,8 @@ public class titleScript1 : MonoBehaviour {
 
 		if(Input.GetKeyDown (KeyCode.Return)) {
 
-			GameObject.Find ("text_prompt2").guiText.enabled = false;
-			GameObject.Find ("text_prompt").guiText.enabled = false;
+			GameObject.Find ("text_prompt2").GetComponent<GUIText>().enabled = false;
+			GameObject.Find ("text_prompt").GetComponent<GUIText>().enabled = false;
 			GameObject.Find("goal").GetComponent<levelSwitcher>().sceneEnding = true;
 		}
 	

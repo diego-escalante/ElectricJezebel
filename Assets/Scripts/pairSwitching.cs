@@ -73,7 +73,7 @@ public class pairSwitching : MonoBehaviour {
 	}
 
 	void toggleSwitch(){
-		AudioSource.PlayClipAtPoint(switchonSound, transform.position);
+		GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(switchonSound);
 		if(isActive){
 			isActive = false;
 			if(pairSwitch.GetComponent<pairSwitching>().exists)
@@ -104,7 +104,7 @@ public class pairSwitching : MonoBehaviour {
 		if(newlyExisting){
 			exists = true;
 			if (firsttime) firsttime = false;
-			else AudioSource.PlayClipAtPoint(switchonSound, transform.position);
+			else GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(switchonSound);
 			if(pairSwitch.GetComponent<pairSwitching>().isActive) isActive = false;
 			else isActive = true;
 			newlyExisting = false;

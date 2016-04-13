@@ -12,6 +12,6 @@ public class stickyText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		viewPos = Camera.main.WorldToScreenPoint (transform.parent.position);
-		guiText.pixelOffset = new Vector2 (viewPos.x, viewPos.y);
+		GetComponent<GUIText>().pixelOffset = new Vector2 (viewPos.x, viewPos.y);
 	}
 }

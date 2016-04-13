@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class levelSwitcher : MonoBehaviour {
 
 	public float fadeSpeed = 1.5f;		//Speed that the screen fades between black and clear.
-	private bool sceneStarting = true; 	//Whether or not the screen is still fading in.
+	// private bool sceneStarting = true; 	//Whether or not the screen is still fading in.
 	[HideInInspector]
 	public bool sceneEnding = false;	//You get what I mean.
 	private bool overlap = false;		//Used to check if the player is at the goal.
@@ -15,10 +16,11 @@ public class levelSwitcher : MonoBehaviour {
 
 	void Awake(){
 		//Find the fader texture.
-		fader = GameObject.Find ("fader").guiTexture;
+		fader = GameObject.Find ("fader").GetComponent<GUITexture>();
 		//Set the guiTexture to fill the entire screen.
 		fader.transform.position = Vector3.zero;
 		fader.pixelInset = new Rect(0f, 0f, Screen.width, Screen.height);
+		StartCoroutine(fade(true));
 	}
 	
 	//Use OnTriggerEnter and OnTriggerExit to check if the player is at the goal.
@@ -34,63 +36,52 @@ public class levelSwitcher : MonoBehaviour {
 	}
 
 	void Update () {
-		//Fade in.
-		if(sceneStarting) startScene();
 
 		//If player is at goal and presses the down arrow, we want to switch levels.
 		if (overlap && Input.GetKeyDown(KeyCode.DownArrow)) {
-			sceneEnding = true;
+			StartCoroutine(fade(false));
 		}
-
-		//Fade out.
-		if(sceneEnding) endScene();
 
 		//Restart scene if player presses R.
 		if(Input.GetKeyDown(KeyCode.R)) {
 			restart = true;
-			sceneEnding = true;
+			StartCoroutine(fade(false));
 		}
-	}
-
-	void startScene(){
-		fadeToClear();
-
-		//If gui is almost clear, we are done fading in.
-		if(fader.color.a <= 0.05f){
-			fader.color = Color.clear;
-			fader.enabled = false;
-			sceneStarting = false;
-		}
-
 	}
 
 	void endScene(){
-
-		fader.enabled = true;
-		fadeToBlack();
-
-		//If gui is almost black, we are done fading out, switch scenes.
-		if(fader.color.a >= 0.95f){
-			int currentLevel = Application.loadedLevel;
-			int levelAmount = Application.levelCount;
-			if(!restart){
-				if (currentLevel + 1 < levelAmount) Application.LoadLevel(currentLevel + 1);
-				else Application.LoadLevel(0);
-			}
-			else Application.LoadLevel(currentLevel);
+		int currentLevel = SceneManager.GetActiveScene().buildIndex;
+		int levelAmount = SceneManager.sceneCountInBuildSettings;
+		if(!restart){
+			if (currentLevel + 1 < levelAmount) SceneManager.LoadScene(currentLevel + 1);
+			else SceneManager.LoadScene(0);
 		}
+		else SceneManager.LoadScene(currentLevel);
 	}
 
-	void fadeToClear ()
-	{
-		// Lerp the colour of the texture between itself and transparent.
-		fader.color = Color.Lerp(fader.color, Color.clear, fadeSpeed * Time.deltaTime);
+	public void startFadeOut() {
+		StartCoroutine(fade(false));
 	}
-	
-	
-	void fadeToBlack ()
-	{
-		// Lerp the colour of the texture between itself and black.
-		fader.color = Color.Lerp(fader.color, Color.black, fadeSpeed * Time.deltaTime);
+
+	IEnumerator fade(bool fin=true) {
+		float timeTotal = 0.25f;
+		float timeElapsed = 0f;
+		fader.enabled = true;
+		while(timeElapsed < timeTotal) {
+			if(fin) fader.color = Color.Lerp(Color.black, Color.clear, timeElapsed/timeTotal);
+			else fader.color = Color.Lerp(Color.clear, Color.black, timeElapsed/timeTotal);
+			timeElapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		if(fin) {
+			fader.color = Color.clear;
+			fader.enabled = false;
+		}
+		else {
+			fader.color = Color.black;
+			endScene();
+		}
+
 	}
 }

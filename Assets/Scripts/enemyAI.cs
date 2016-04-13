@@ -27,7 +27,7 @@ public class enemyAI : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		//Check if currently on screen.
 		checkExistance();
 

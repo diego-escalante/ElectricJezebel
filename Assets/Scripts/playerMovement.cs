@@ -58,7 +58,7 @@ public class playerMovement : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	//Update is called once per frame.
 	//----------------------------------------------------------------------------------------------------
-	void Update () {
+	void FixedUpdate () {
 
 		//Record the jump key if it is pressed.
 		if(Input.GetKey(KeyCode.Space)) jumpPressed = true;
@@ -111,7 +111,7 @@ public class playerMovement : MonoBehaviour {
 				if(viewPosTR.y > 0.8) animator.SetTrigger("pushingup");
 				else animator.SetTrigger("jumping");
 				velocity.y = jumpStrength;
-				AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+				GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(jumpSound);//, GameObject.FindWithTag("MainCamera").transform.position);
 			}
 		}
 
@@ -262,7 +262,7 @@ public class playerMovement : MonoBehaviour {
 				if(direction == -1) {
 					if(animator.GetCurrentAnimatorStateInfo(0).IsName("Fall")) animator.SetTrigger("landing");
 					grounded = true;							//Remember we are grounded if we hit the floor.
-					if (!continuousGrounded) AudioSource.PlayClipAtPoint(landSound, transform.position);
+					if (!continuousGrounded) GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(landSound);
 					continuousGrounded = true;
 					}
 				//Debug.DrawRay(currentRay, new Vector2(0, direction * rayLength), Color.red);

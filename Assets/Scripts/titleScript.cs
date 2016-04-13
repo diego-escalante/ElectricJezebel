@@ -12,12 +12,19 @@ public class titleScript : MonoBehaviour {
 	void Update () {
 
 		if(Input.GetKeyDown (KeyCode.Return)) {
-
-			GameObject.Find ("text_ottersden").guiText.enabled = false;
-			GameObject.Find ("text_ottersden2").guiText.enabled = false;
-			GameObject.Find ("text_forLD").guiText.enabled = false;
-			GameObject.Find ("text_prompt").guiText.enabled = false;
-			GameObject.Find("goal").GetComponent<levelSwitcher>().sceneEnding = true;
+			GameObject g;
+			g = GameObject.Find("text_ottersden");
+			if(g) g.GetComponent<GUIText>().enabled = false;
+			g = GameObject.Find("text_ottersden2");
+			if(g) g.GetComponent<GUIText>().enabled = false;
+			g = GameObject.Find("text_forLD");
+			if(g) g.GetComponent<GUIText>().enabled = false;
+			g = GameObject.Find("text_prompt");
+			if(g) g.GetComponent<GUIText>().enabled = false;
+			g = GameObject.Find("text_prompt2");
+			if(g) g.GetComponent<GUIText>().enabled = false;
+			g = GameObject.Find("goal");
+			if(g) g.GetComponent<levelSwitcher>().startFadeOut();
 		}
 	
 	}

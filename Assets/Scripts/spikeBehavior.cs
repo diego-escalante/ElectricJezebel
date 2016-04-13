@@ -18,7 +18,7 @@ public class spikeBehavior : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if(other.gameObject == player && !caput){
 			caput = true;
-			AudioSource.PlayClipAtPoint(deathSound, transform.position);
+			GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(deathSound);
 			StartCoroutine(death());
 		}
 	}
@@ -32,6 +32,6 @@ public class spikeBehavior : MonoBehaviour {
 		yield return new WaitForSeconds(2);
 		//Restart the level.
 		GameObject.Find("goal").GetComponent<levelSwitcher>().restart = true;
-		GameObject.Find("goal").GetComponent<levelSwitcher>().sceneEnding = true;
+		GameObject.Find("goal").GetComponent<levelSwitcher>().startFadeOut();
 	}
 }

@@ -50,7 +50,7 @@ public class timeSwitching : MonoBehaviour {
 		
 		//Preform action.
 		if (overlap && Input.GetKeyDown(KeyCode.DownArrow)) {
-			AudioSource.PlayClipAtPoint(switchSound, transform.position);
+			GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(switchSound);
 			activateSwitch(setTime);
 		}
 
@@ -58,15 +58,15 @@ public class timeSwitching : MonoBehaviour {
 		if(isActive && exists) {
 			countdown -= Time.deltaTime;
 			if (countdown <= marker && marker >= 7) {
-				AudioSource.PlayClipAtPoint(beep1, transform.position);
+				GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(beep1);
 				marker--;
 				}
 			else if (countdown <= marker && marker >= 2) {
-				AudioSource.PlayClipAtPoint(beep2, transform.position);
+				GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(beep2);
 				marker -= 0.5f;
 			}
 			else if (countdown <= marker) {
-				AudioSource.PlayClipAtPoint(beep3, transform.position);
+				GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().PlayOneShot(beep3);
 				marker -= 0.25f;
 			}
 			if (countdown <= 0){

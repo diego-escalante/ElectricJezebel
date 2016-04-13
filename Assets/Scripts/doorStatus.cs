@@ -7,14 +7,14 @@ public class doorStatus : MonoBehaviour {
 	public bool isOpen = false;
 
 	public void openDoor(){
-		this.collider2D.enabled = false;
-		this.renderer.enabled = false;
+		this.GetComponent<Collider2D>().enabled = false;
+		this.GetComponent<Renderer>().enabled = false;
 		isOpen = true;
 	}
 
 	public void closeDoor(){
-		this.collider2D.enabled = true;
-		this.renderer.enabled = true;
+		this.GetComponent<Collider2D>().enabled = true;
+		this.GetComponent<Renderer>().enabled = true;
 		isOpen = false;
 	}
 }

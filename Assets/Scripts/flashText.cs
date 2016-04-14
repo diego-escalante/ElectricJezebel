@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class flashText : MonoBehaviour {
 
-	private GUIText fader;
+	private Text fader;
 
 	void Start () {
-		fader = GetComponent<GUIText>();
+		fader = GetComponent<Text>();
 		StartCoroutine(fade());
 	}
 

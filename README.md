@@ -8,7 +8,7 @@
 </p>
 
 ## [Play the game here!](https://diego-escalante.itch.io/electric-jezebel)
-This game was made in 72 hours for the Ludum Dare 31 jam. The theme of the jam was "Entire Game on One Screen." It was made with Unity. 
+This game was made in 72 hours for the Ludum Dare 31 jam in December 2014. The theme of the jam was "Entire Game on One Screen." It was made with Unity. 
 
 ## Links
 * [Electric Jezebel on itch.io](https://diego-escalante.itch.io/electric-jezebel): Play the game directly on your browser here.

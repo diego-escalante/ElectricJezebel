@@ -1,23 +1,34 @@
 # Electric Jezebel
-A repo that houses our game, Electric Jezebel.
 
-#### Getting Started
+<p align="center">
+  <picture>
+    <source srcset="../assets/gameplay.jpg?raw=true">
+    <img alt="Shows a jpg with a snippet of gameplay." src="../assets/gameplay.jpg?raw=true">
+  </picture>
+</p>
 
+## [Play the game here!](https://diego-escalante.itch.io/electric-jezebel)
+This game was made in 72 hours for the Ludum Dare 31 jam. The theme of the jam was "Entire Game on One Screen." It was made with Unity. 
 
-If you are a novice at this, here are some detailed steps to go from nothing to running the game:
+## Links
+* [Electric Jezebel on itch.io](https://diego-escalante.itch.io/electric-jezebel): Play the game directly on your browser here.
+* [Jam Submission Page](http://ludumdare.com/compo/ludum-dare-31/?action=preview&uid=46754): Feedback on the game by other participants can be found here.
 
-1. Make sure you have [Unity](http://unity3d.com/unity/download "Download Unity") and [Git](http://git-scm.com/downloads "Download Git"). Electric Jezebel, originally built using Unity 4.x, has been updated to work with Unity 5.3.4f1.
+## Setting Up the Project Locally
+1. Make sure you have Unity version 5.3.4f1 installed, as that is the version of the engine that was used for this game. You can get it from the [Unity Hub](https://unity.com/download).
+2. Clone this repo in your desired directory: `git clone https://github.com/diego-escalante/LD31-ElectricJezebel.git`
+3. Start up the Unity Hub. Open the project and ensure that the editor version 5.3.4f1 is selected for the project.
+4. One the engine opens up the project, you can run the game by opening up the main scene and pressing the Play button in the top center.
 
-2. Open up Git Bash, navigate to the desired directory using the [*cd* command](http://unixhelp.ed.ac.uk/tasks/cd1.html "PLZ HELP, WAT IS CD?").
-
-3. Clone this repository into that directory with this command:
-
-    ```
-    $ git clone https://github.com/diego-escalante/ElectricJezebel.git
- ```
-
-4. Start up Unity, and open the ElectricJezebel project.
-
-#### Ludum Dare Entry
-
-This game was originally made for Ludum Dare 31 in three days. It was built around the theme *Entire Game on One Screen*. You can play the original game in all its glory (and flaws) [here](http://ludumdare.com/compo/ludum-dare-31/?action=preview&uid=46754). Or you can dive into the original project on [this branch](https://github.com/diego-escalante/ElectricJezebel/tree/LD31_version) of the repo.
+## Rankings
+The game received the following rankings in the game jam:
+| Category   | Rank (out of 1267 entries)|
+|-----------:|:--------------------------|
+| Overall    | 289                       |
+| Fun        | 230                       |
+| Innovation | 265                       |
+| Theme      | 300                       |
+| Graphics   | 319                       |
+| Audio      | 327                       |
+| Humor      | 693                       |
+| Mood       | 706                       |
